@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Historial de Reservas</title>
+  <link rel="stylesheet" href="../css/agenda.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="agenda.html">Mi Agenda</a></li>
+      <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
+      <li><a href="crearReservas.html">Crear Reserva</a></li>
+      <li><a href="historialReservas.html">Historial</a></li>
+      <li><a href="reportes.html">Reportes</a></li>
+      <li><a href="#">Catálogo</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <header class="navbar">
+      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" /></span>
+      <span class="user-email">usuario@email.com</span>
+    </header>
+
+    <section class="agenda-container">
+      <h2 class="titulo">Historial de Reservas</h2>
+
+      <table class="tabla-reservas">
+        <thead>
+          <tr>
+            <th># Reserva</th>
+            <th>Cliente</th>
+            <th>Vehículo</th>
+            <th>Fecha Entrega</th>
+            <th>Fecha Recogida</th>
+            <th>Estado</th>
+            <th>Monto</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>R-001</td>
+            <td>María López</td>
+            <td>XYZ-123</td>
+            <td>2025-05-10</td>
+            <td>2025-05-12</td>
+            <td><span class="badge badge-success">Completada</span></td>
+            <td>₡47.000</td>
+            <td><button class="btn-outline">Ver</button></td>
+          </tr>
+          <tr>
+            <td>R-002</td>
+            <td>Carlos Ruiz</td>
+            <td>ABC-456</td>
+            <td>2025-06-01</td>
+            <td>2025-06-02</td>
+            <td><span class="badge badge-success">Completada</span></td>
+            <td>₡53.000</td>
+            <td><button class="btn-outline">Ver</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+</body>
+</html>

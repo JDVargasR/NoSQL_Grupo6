@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Nueva Reserva</title>
+  <link rel="stylesheet" href="../css/agenda.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="agenda.html">Mi Agenda</a></li>
+      <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
+      <li><a href="crearReservas.html">Crear Reserva</a></li>
+      <li><a href="historialReservas.html">Historial</a></li>
+      <li><a href="reportes.html">Reportes</a></li>
+      <li><a href="#">Catálogo</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <header class="navbar">
+      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" /></span>
+      <span class="user-email">usuario@email.com</span>
+    </header>
+
+    <section class="agenda-container">
+      <h2 class="titulo">Crear Nueva Reserva</h2>
+
+      <form class="form-reserva">
+        <div class="form-group">
+          <label for="cliente">Cliente</label>
+          <input type="text" id="cliente" placeholder="Nombre del cliente" required>
+        </div>
+
+        <div class="form-group">
+          <label for="vehiculo">Vehículo</label>
+          <input type="text" id="vehiculo" placeholder="Placa del vehículo" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha" required>
+        </div>
+
+        <div class="form-group">
+          <label for="hora">Hora</label>
+          <input type="time" id="hora" required>
+        </div>
+
+        <button type="submit" class="btn-guardar">Guardar Reserva</button>
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>

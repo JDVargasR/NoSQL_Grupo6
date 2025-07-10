@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Módulo de Reportes</title>
+  <link rel="stylesheet" href="../css/agenda.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <ul>
+    <li><a href="agenda.html">Mi Agenda</a></li>
+    <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
+    <li><a href="crearReservas.html">Crear Reserva</a></li>
+    <li><a href="historialReservas.html">Historial</a></li>
+    <li><a href="reportes.html">Reportes</a></li>
+    <li><a href="#">Catálogo</a></li>
+  </ul>
+</aside>
+
+<main class="main-content">
+  <header class="navbar">
+    <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo"></span>
+    <span class="user-email">usuario@email.com</span>
+  </header>
+
+  <section class="agenda-container">
+    <h2 class="titulo">Módulo de Reportes</h2>
+
+    <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+      <div class="card-reporte">
+        <h3>Reporte De Vehículos Por Usuario</h3>
+        <p>Lista de vehículos registrados por cada usuario.</p>
+        <a href="reporteVehiculos.html" class="btn-orange">Ver Reporte</a>
+      </div>
+      <div class="card-reporte">
+        <h3>Historial De Reservas</h3>
+        <p>Visualiza todas las reservas realizadas.</p>
+        <a href="historialReservas.html" class="btn-orange">Ver Reporte</a>
+      </div>
+      <div class="card-reporte">
+        <h3>Facturación General</h3>
+        <p>Resumen de facturas emitidas por fecha.</p>
+        <a href="reporteFacturacion.html" class="btn-orange">Ver Reporte</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

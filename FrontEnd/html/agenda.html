@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agenda de Reservas Activas</title>
+  <link rel="stylesheet" href="../css/agenda.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="agenda.html">Mi Agenda</a></li>
+      <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
+      <li><a href="crearReservas.html">Crear Reserva</a></li>
+      <li><a href="historialReservas.html">Historial</a></li>
+      <li><a href="reportes.html">Reportes</a></li>
+      <li><a href="#">Catálogo</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <header class="navbar">
+      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" width="30"></span>
+      <span class="user-email">usuario@email.com</span>
+    </header>
+
+    <section class="agenda-container">
+      <h2 class="titulo">Agenda De Reservas Activas</h2>
+
+      <table class="tabla-reservas">
+        <thead>
+          <tr>
+            <th>N° Reserva</th>
+            <th>Cliente</th>
+            <th>DNI / CIF</th>
+            <th>Teléfono</th>
+            <th>Matrícula</th>
+            <th>Fecha de entrega</th>
+            <th>Hora de entrega</th>
+            <th>Fecha de recogida</th>
+            <th>Hora de recogida</th>
+            <th>Pago</th>
+            <th>Acción</th>
+            <th>Reserva / Fact.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>R-001</td>
+            <td>Jose</td>
+            <td>33344</td>
+            <td>4545</td>
+            <td>m</td>
+            <td>16/01/2024</td>
+            <td>06:15:00</td>
+            <td>26/01/2024</td>
+            <td>05:45</td>
+            <td>47.00 €</td>
+            <td><button class="btn-historial">Enviar a Historial</button></td>
+            <td>
+              <button class="btn-pdf">PDF</button>
+              <button class="btn-csv">CSV</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="paginacion">
+        <button disabled>Anterior</button>
+        <span class="pagina-actual">1</span>
+        <button>Siguiente</button>
+      </div>
+
+      <p class="registro-info">Mostrando registros del 1 al 1 de un total de 1 registros</p>
+    </section>
+  </main>
+
+</body>
+</html>
+

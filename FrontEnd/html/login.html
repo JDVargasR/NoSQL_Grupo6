@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio de Sesión</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-box">
+        <img src="../img/parqueoLogin.jpg" alt="Logo" class="logo">
+        <h2>¡Bienvenido!</h2>
+        <p>Inicie sesión para continuar.</p>
+        <form id="loginForm">
+          <input type="email" id="correo" placeholder="Correo" required />
+          <input type="password" id="contrasenna" placeholder="Contraseña" required />
+          <button type="submit">Iniciar sesión</button>
+        </form>
+        <p class="pLoginRegistro">¿No tienes una cuenta? <a href="registro.html">Crear una</a></p>
+      </div>
+    </div>
+    <script src="../js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

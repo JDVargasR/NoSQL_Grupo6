@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte de Facturación</title>
+  <link rel="stylesheet" href="../css/agenda.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <ul>
+    <li><a href="agenda.html">Mi Agenda</a></li>
+    <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
+    <li><a href="crearReservas.html">Crear Reserva</a></li>
+    <li><a href="historialReservas.html">Historial</a></li>
+    <li><a href="reportes.html">Reportes</a></li>
+    <li><a href="#">Catálogo</a></li>
+  </ul>
+</aside>
+
+<main class="main-content">
+  <header class="navbar">
+    <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo"></span>
+    <span class="user-email">usuario@email.com</span>
+  </header>
+
+  <section class="agenda-container">
+    <h2 class="titulo">Reporte de Facturación</h2>
+    <a href="reportes.html" class="volver-link">Volver a Reportes</a>
+
+    <table class="tabla-reservas">
+      <thead>
+        <tr>
+          <th># Factura</th>
+          <th>Usuario</th>
+          <th>Fecha</th>
+          <th>Monto</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>F001</td>
+          <td>Josue Navarro</td>
+          <td>2025-06-17</td>
+          <td>₡6,000</td>
+          <td><span class="badge badge-success">Pagada</span></td>
+        </tr>
+        <tr>
+          <td>F002</td>
+          <td>Andrea Vargas</td>
+          <td>2025-06-16</td>
+          <td>₡3,500</td>
+          <td><span class="badge badge-warning">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>F003</td>
+          <td>Michael Mora</td>
+          <td>2025-06-15</td>
+          <td>₡4,200</td>
+          <td><span class="badge badge-danger">Anulada</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

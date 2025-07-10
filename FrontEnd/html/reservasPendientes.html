@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservas Pendientes</title>
+  <link rel="stylesheet" href="../css/agenda.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="agenda.html">Mi Agenda</a></li>
+      <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
+      <li><a href="crearReservas.html">Crear Reserva</a></li>
+      <li><a href="historialReservas.html">Historial</a></li>
+      <li><a href="reportes.html">Reportes</a></li>
+      <li><a href="#">Catálogo</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <header class="navbar">
+      <span class="logo">
+        <img src="../img/parqueoLogin.jpg" alt="Logo" />
+      </span>
+      <span class="user-email">usuario@email.com</span>
+    </header>
+
+    <section class="agenda-container">
+      <h2 class="titulo">Reservas Pendientes</h2>
+
+      <table class="tabla-reservas">
+        <thead>
+          <tr>
+            <th># Reserva</th>
+            <th>Cliente</th>
+            <th>Vehículo</th>
+            <th>Fecha</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>R-001</td>
+            <td>María</td>
+            <td>ABC-123</td>
+            <td>2025-06-18</td>
+            <td><button class="btn-historial">Confirmar</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="paginacion">
+        <button disabled>Anterior</button>
+        <span class="pagina-actual">1</span>
+        <button>Siguiente</button>
+      </div>
+
+      <p class="registro-info">Mostrando registros del 1 al 1 de un total de 1 registros</p>
+    </section>
+  </main>
+
+</body>
+</html>
