@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { iniciarConexion } = require('./db/oracleConnection');
+const { iniciarConexion } = require('./db/dbConnection');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,12 +11,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Conexión a Oracle
+// Conexión a DB
 iniciarConexion();
 
 // Rutas de la API
 const authRoutes = require('./routers/autenticacionRoutes');
 app.use('/api/auth', authRoutes);
+
+const usuarioRoutes = require('./routers/usuario');
+app.use(express.json());
+app.use('/api', usuarioRoutes);
 
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, '../FrontEnd')));

@@ -4,14 +4,14 @@ require('dotenv').config();
 async function iniciarConexion() {
   try {
     await oracledb.createPool({
-      user: process.env.ORACLE_USER,
-      password: process.env.ORACLE_PASSWORD,
-      connectString: process.env.ORACLE_CONNECT_STRING,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      connectString: process.env.DB_CONNECT_STRING,
       poolAlias: 'default',
     });
-    console.log('✅ Pool de conexión Oracle creado correctamente.');
+    console.log('');
   } catch (error) {
-    console.error('❌ Error al crear el pool de conexión:', error);
+    console.error('', error);
   }
 }
 
