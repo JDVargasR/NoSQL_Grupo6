@@ -1,5 +1,5 @@
 const oracledb = require('oracledb');
-const { OpenDB } = require('../db/dbConnection');
+const { OpenDB } = require('../db/oracleConnection');
 
 // REGISTRO DE USUARIO
 const registrar = async (req, res) => {

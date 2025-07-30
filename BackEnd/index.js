@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { iniciarConexion } = require('./db/dbConnection');
+const { iniciarConexion } = require('./db/oracleConnection');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,16 +12,25 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Conexión a DB
+// Conexión a Oracle
 iniciarConexion();
+
+
 
 // Rutas de la API
 const authRoutes = require('./routers/autenticacionRoutes');
 app.use('/api/auth', authRoutes);
 
-const usuarioRoutes = require('./routers/usuario');
-app.use(express.json());
-app.use('/api', usuarioRoutes);
+//Crear reserva
+const reservaRoutes = require('./routers/reservaRoutes');
+app.use('/api/reservas', reservaRoutes);
+
+//Crear vehiculo
+const vehiculoRoutes = require("./routers/vehiculoRoutes");
+app.use("/api/vehiculos", vehiculoRoutes);
+
+const listarVehiculoRoutes = require("./routers/listarVehiculoRoutes");
+app.use("/api/listarvehiculo", listarVehiculoRoutes); 
 
 // Servir archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, '../FrontEnd')));
@@ -32,5 +42,7 @@ app.get('/', (req, res) => {
 
 // Levantar servidor
 app.listen(PORT, () => {
-  console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+
+

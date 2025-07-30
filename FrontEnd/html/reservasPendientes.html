@@ -10,12 +10,12 @@
   <!-- Sidebar -->
   <aside class="sidebar">
     <ul>
-      <li><a href="agenda.html">Mi Agenda</a></li>
+       <li><a href="agenda.html">Mi Agenda</a></li>
       <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
       <li><a href="crearReservas.html">Crear Reserva</a></li>
       <li><a href="historialReservas.html">Historial</a></li>
       <li><a href="reportes.html">Reportes</a></li>
-      <li><a href="#">Catálogo</a></li>
+      <li><a href="misVehiculos.html">Mis Vehículos</a></li>
     </ul>
   </aside>
 
@@ -47,7 +47,9 @@
             <td>María</td>
             <td>ABC-123</td>
             <td>2025-06-18</td>
-            <td><button class="btn-historial">Confirmar</button></td>
+            <td>
+                <button class="btn-historial" onclick="abrirModal('R-001', 47000)">Confirmar</button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -61,6 +63,32 @@
       <p class="registro-info">Mostrando registros del 1 al 1 de un total de 1 registros</p>
     </section>
   </main>
+  <div id="modalPago" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    <h3>Realizar Pago</h3>
 
+    <form action="../Controllers/pagoController.php" method="POST">
+      <input type="hidden" name="idReserva" id="idReserva">
+
+      <div class="form-group">
+        <label for="metodo">Método de Pago</label>
+        <select name="metodo" id="metodo" required>
+          <option value="">Seleccione</option>
+          <option value="1">Tarjeta</option>
+          <option value="2">Efectivo</option>
+          <option value="3">Transferencia</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="monto">Monto</label>
+        <input type="number" name="monto" id="monto" placeholder="₡" required>
+      </div>
+
+      <button type="submit" class="btn-historial">Pagar</button>
+    </form>
+  </div>
+</div>
 </body>
 </html>
