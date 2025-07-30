@@ -1,8 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { iniciarConexion } = require('./db/oracleConnection');
-
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,37 +11,46 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Conexión a Oracle
-iniciarConexion();
+// Conexión a MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/ProyectoNoSQL_Parqueo', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
+mongoose.connection.on('connected', () => {
+  console.log('✅ Conectado a MongoDB - ProyectoNoSQL_Parqueo');
+});
 
+mongoose.connection.on('error', (err) => {
+  console.error('❌ Error al conectar a MongoDB:', err);
+});
 
-// Rutas de la API
-const authRoutes = require('./routers/autenticacionRoutes');
-app.use('/api/auth', authRoutes);
+// Rutas API
+const usuarioRoutes = require('./routers/usuarioRoutes');
+app.use('/api/auth', usuarioRoutes);
 
-//Crear reserva
-const reservaRoutes = require('./routers/reservaRoutes');
-app.use('/api/reservas', reservaRoutes);
-
-//Crear vehiculo
-const vehiculoRoutes = require("./routers/vehiculoRoutes");
-app.use("/api/vehiculos", vehiculoRoutes);
-
-const listarVehiculoRoutes = require("./routers/listarVehiculoRoutes");
-app.use("/api/listarvehiculo", listarVehiculoRoutes); 
-
-// Servir archivos estáticos del frontend
+// Frontend
 app.use(express.static(path.join(__dirname, '../FrontEnd')));
 
-// Redirigir raíz a login por defecto
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../FrontEnd/html/login.html'));
 });
 
-// Levantar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+// Manejador de errores 404
+app.use((req, res, next) => {
+  res.status(404).send('Ruta no encontrada');
 });
+
+// Manejador de errores generales
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Error del servidor');
+});
+
+// Iniciar servidor
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+});
+
 
 
