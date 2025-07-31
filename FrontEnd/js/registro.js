@@ -8,36 +8,44 @@ document.getElementById("registroForm").addEventListener("submit", async (e) => 
   try {
     const response = await fetch("http://localhost:3000/api/usuarios/", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nombre, correo, contrasenna }) // No se agrega ni estado ni tipo usuario porque ya automaticamente se asignan
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ nombre, correo, contrasenna })
     });
 
     const data = await response.json();
 
     if (response.ok) {
       Swal.fire({
-        icon: "success",
-        title: "¡Registro exitoso!",
-        text: "Su cuenta ha sido creada correctamente.",
-        confirmButtonText: "Iniciar sesión",
-        confirmButtonColor: "#a5dc86"
+        icon: 'success',
+        title: 'Registro exitoso',
+        text: data.message,
+        confirmButtonText: 'Iniciar sesión',
+        confirmButtonColor: '#a5dc86',
+        scrollbarPadding: false,
+        heightAuto: false
       }).then(() => {
         window.location.href = "login.html";
       });
     } else {
       Swal.fire({
-        icon: "warning",
-        title: "Error",
-        text: data.error || "No se pudo registrar.",
-        confirmButtonColor: "#FFA500"
+        icon: 'warning',
+        title: 'Advertencia',
+        text: data.message,
+        confirmButtonColor: '#f4b400',
+        scrollbarPadding: false,
+        heightAuto: false
       });
     }
   } catch (err) {
     Swal.fire({
-      icon: "error",
-      title: "Error del servidor",
-      text: "No se pudo conectar al servidor.",
-      confirmButtonColor: "#FFA500"
+      icon: 'error',
+      title: 'Error del servidor',
+      text: 'No se pudo conectar al backend.',
+      confirmButtonColor: '#d33',
+      scrollbarPadding: false,
+      heightAuto: false
     });
   }
 });
