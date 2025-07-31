@@ -10,4 +10,5 @@ router.post('/registro', registrar);
 // Ruta para login
 router.post('/login', login);
 
+// Exportar al Index
 module.exports = router;
