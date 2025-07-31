@@ -9,7 +9,7 @@ document.getElementById("registroForm").addEventListener("submit", async (e) => 
     const response = await fetch("http://localhost:3000/api/usuarios/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nombre, correo, contrasenna })
+      body: JSON.stringify({ nombre, correo, contrasenna }) // No se agrega ni estado ni tipo usuario porque ya automaticamente se asignan
     });
 
     const data = await response.json();
@@ -25,19 +25,11 @@ document.getElementById("registroForm").addEventListener("submit", async (e) => 
         window.location.href = "login.html";
       });
     } else {
-      let mensaje = data.error || "No se pudo registrar.";
-      let color = "#f4b400";
-
-      // Si es error por correo duplicado
-      if (mensaje.includes("E11000")) {
-        mensaje = "El correo ya está registrado.";
-      }
-
       Swal.fire({
         icon: "warning",
         title: "Error",
-        text: mensaje,
-        confirmButtonColor: color
+        text: data.error || "No se pudo registrar.",
+        confirmButtonColor: "#FFA500"
       });
     }
   } catch (err) {
@@ -45,7 +37,7 @@ document.getElementById("registroForm").addEventListener("submit", async (e) => 
       icon: "error",
       title: "Error del servidor",
       text: "No se pudo conectar al servidor.",
-      confirmButtonColor: "#d33"
+      confirmButtonColor: "#FFA500"
     });
   }
 });

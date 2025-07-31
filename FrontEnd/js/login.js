@@ -20,16 +20,16 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         icon: "success",
         title: "¡Inicio de sesión exitoso!",
         text: `Bienvenido, ${resultado.usuario.nombre}`,
-        confirmButtonColor: "#a5dc86" // azul
+        confirmButtonColor: "#a5dc86"
       }).then(() => {
         window.location.href = "agenda.html";
       });
     } else {
       Swal.fire({
-        icon: "error",
-        title: "Error",
+        icon: "warning",
+        title: "Acceso denegado",
         text: resultado.mensaje || "Correo o contraseña incorrectos",
-        confirmButtonColor: "#d33" 
+        confirmButtonColor: "#ffa500"
       });
     }
   } catch (error) {
@@ -37,7 +37,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
       icon: "error",
       title: "Error del servidor",
       text: "No se pudo conectar al servidor.",
-      confirmButtonColor: "#d33" 
+      confirmButtonColor: "#d33"
     });
   }
 });

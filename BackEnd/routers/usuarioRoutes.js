@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
 
 // Actualizar usuario
 router.put('/:id', async (req, res) => {
-  const usuario = await Usuario.findOneAndUpdate({ id: req.params.id }, req.body, { new: true });
+  const usuario = await Usuario.findByIdAndUpdate(req.params.id, req.body, { new: true });
   if (usuario) res.json(usuario);
   else res.status(404).json({ error: 'Usuario no encontrado para actualizar' });
 });
@@ -48,16 +48,20 @@ router.post('/login', async (req, res) => {
     const usuario = await Usuario.findOne({ correo });
 
     if (!usuario) {
-      return res.status(401).json({ mensaje: 'Correo no registrado' });
+      return res.status(401).json({ mensaje: 'Correo o contraseña incorrectos' });
     }
 
     if (usuario.contrasenna !== contrasenna) {
-      return res.status(401).json({ mensaje: 'Contraseña incorrecta' });
+      return res.status(401).json({ mensaje: 'Correo o contraseña incorrectos' });
     }
 
-    res.status(200).json({ mensaje: 'Login exitoso', usuario });
-  } catch (err) {
-    res.status(500).json({ error: 'Error del servidor' });
+    if (usuario.estado !== 'ACTIVO') {
+      return res.status(403).json({ mensaje: 'Usuario inactivo, contacte con su administrador.' });
+    }
+
+    res.status(200).json({ usuario });
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error del servidor' });
   }
 });
 
