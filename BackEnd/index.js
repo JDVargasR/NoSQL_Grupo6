@@ -26,8 +26,13 @@ mongoose.connection.on('error', (err) => {
 });
 
 // Rutas API
-const usuarioRoutes = require('./routers/usuarioRoutes');
-app.use('/api/auth', usuarioRoutes);
+// Usuario - Login/Register
+const RouterUsuario = require('./routers/usuarioRoutes');
+app.use('/api/usuarios', RouterUsuario);
+
+// Reservas
+//const reservaRoutes = require('./routers/reservaRoutes');
+//app.use('/api/reservas', reservaRoutes);
 
 // Frontend
 app.use(express.static(path.join(__dirname, '../FrontEnd')));
@@ -51,6 +56,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
-
-
-

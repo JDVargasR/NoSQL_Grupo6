@@ -6,11 +6,9 @@ document.getElementById("registroForm").addEventListener("submit", async (e) => 
   const contrasenna = document.getElementById("contrasenna").value;
 
   try {
-    const response = await fetch("http://localhost:3000/api/auth/registro", {
+    const response = await fetch("http://localhost:3000/api/usuarios/", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ nombre, correo, contrasenna })
     });
 
@@ -18,34 +16,36 @@ document.getElementById("registroForm").addEventListener("submit", async (e) => 
 
     if (response.ok) {
       Swal.fire({
-        icon: 'success',
-        title: 'Registro exitoso',
-        text: data.message,
-        confirmButtonText: 'Iniciar sesión',
-        confirmButtonColor: '#3085d6',
-        scrollbarPadding: false,
-        heightAuto: false
+        icon: "success",
+        title: "¡Registro exitoso!",
+        text: "Su cuenta ha sido creada correctamente.",
+        confirmButtonText: "Iniciar sesión",
+        confirmButtonColor: "#a5dc86"
       }).then(() => {
         window.location.href = "login.html";
       });
     } else {
+      let mensaje = data.error || "No se pudo registrar.";
+      let color = "#f4b400";
+
+      // Si es error por correo duplicado
+      if (mensaje.includes("E11000")) {
+        mensaje = "El correo ya está registrado.";
+      }
+
       Swal.fire({
-        icon: 'warning',
-        title: 'Advertencia',
-        text: data.message,
-        confirmButtonColor: '#f4b400',
-        scrollbarPadding: false,
-        heightAuto: false
+        icon: "warning",
+        title: "Error",
+        text: mensaje,
+        confirmButtonColor: color
       });
     }
   } catch (err) {
     Swal.fire({
-      icon: 'error',
-      title: 'Error del servidor',
-      text: 'No se pudo conectar al backend.',
-      confirmButtonColor: '#d33',
-      scrollbarPadding: false,
-      heightAuto: false
+      icon: "error",
+      title: "Error del servidor",
+      text: "No se pudo conectar al servidor.",
+      confirmButtonColor: "#d33"
     });
   }
 });

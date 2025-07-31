@@ -5,46 +5,39 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const contrasenna = document.getElementById("contrasenna").value;
 
   try {
-    const response = await fetch("http://localhost:3000/api/auth/login", {
+    const response = await fetch("http://localhost:3000/api/usuarios/login", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ correo, contrasenna })
+      body: JSON.stringify({ correo, contrasenna }),
     });
 
-    const data = await response.json();
+    const resultado = await response.json();
 
     if (response.ok) {
       Swal.fire({
-        icon: 'success',
-        title: 'Inicio exitoso',
-        text: data.message,
-        confirmButtonText: 'Continuar',
-        confirmButtonColor: '#3085d6',
-        scrollbarPadding: false,
-        heightAuto: false
+        icon: "success",
+        title: "¡Inicio de sesión exitoso!",
+        text: `Bienvenido, ${resultado.usuario.nombre}`,
+        confirmButtonColor: "#a5dc86" // azul
       }).then(() => {
-        window.location.href = "agenda.html"; // A la ruta a que se envia al usuario
+        window.location.href = "agenda.html";
       });
     } else {
-      Swal.fire({ 
-        icon: 'error',
-        title: 'Error al iniciar sesión',
-        text: data.message,
-        confirmButtonColor: '#d33',
-        scrollbarPadding: false,
-        heightAuto: false
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: resultado.mensaje || "Correo o contraseña incorrectos",
+        confirmButtonColor: "#d33" 
       });
     }
-  } catch (err) {
+  } catch (error) {
     Swal.fire({
-      icon: 'error',
-      title: 'Error del servidor',
-      text: 'No se pudo conectar al backend.',
-      confirmButtonColor: '#d33',
-      scrollbarPadding: false,
-      heightAuto: false
+      icon: "error",
+      title: "Error del servidor",
+      text: "No se pudo conectar al servidor.",
+      confirmButtonColor: "#d33" 
     });
   }
 });
