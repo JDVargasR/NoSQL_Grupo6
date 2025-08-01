@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manejo de Usuarios</title>
+  <link rel="stylesheet" href="../css/agenda.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <ul>
+      <li><a href="agenda.html">Mi Agenda</a></li>
+      <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
+      <li><a href="crearReservas.html">Crear Reserva</a></li>
+      <li><a href="historialReservas.html">Historial</a></li>
+      <li><a href="reportes.html">Reportes</a></li>
+      <li><a href="misVehiculos.html">Mis Vehículos</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <header class="navbar">
+      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" /></span>
+      <span class="user-email">admin@email.com</span>
+    </header>
+
+    <section class="adminUsuarios-container">
+      <h2 class="adminUsuarios-titulo">Manejo de Usuarios - Administrador</h2>
+      <button id="btnAgregarUsuario" class="adminUsuarios-btnAgregar">Agregar Usuario</button>
+
+      <table class="adminUsuarios-tabla">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tablaUsuarios"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="adminUsuarios-modalUsuarios">
+    <div class="adminUsuarios-modalContenido">
+      <span class="adminUsuarios-cerrar">&times;</span>
+      <h3 id="modalTitulo">Formulario de Usuario</h3>
+      <input type="hidden" id="usuarioId">
+      <input type="text" id="nombreUsuario" placeholder="Nombre" required>
+      <input type="email" id="correoUsuario" placeholder="Correo" required>
+      <input type="password" id="contrasenaUsuario" placeholder="Contraseña" required>
+      <select id="tipoUsuario">
+        <option value="CLIENTE">Cliente</option>
+        <option value="ADMIN">Administrador</option>
+      </select>
+      <select id="estadoUsuario">
+        <option value="ACTIVO">Activo</option>
+        <option value="INACTIVO">Inactivo</option>
+      </select>
+      <button id="btnGuardarUsuario">Guardar</button>
+    </div>
+  </div>
+
+  <script src="../js/usuarios.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

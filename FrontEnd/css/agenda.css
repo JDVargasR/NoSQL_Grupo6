@@ -397,3 +397,129 @@ body {
 .modal-contenido .btn-historial:hover {
   background-color: #e65c00;
 }
+
+.adminUsuarios-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.adminUsuarios-titulo {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.adminUsuarios-btnAgregar {
+  background-color: #e65c00;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.adminUsuarios-tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.adminUsuarios-tabla th,
+.adminUsuarios-tabla td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.adminUsuarios-tabla th {
+  background-color: #e65c00;
+  color: white;
+}
+
+.adminUsuarios-tabla td button {
+  padding: 5px 10px;
+  margin: 0 3px;
+  cursor: pointer;
+}
+
+.modalUsuarios {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content-admin {
+  background-color: #fff;
+  margin: 8% auto;
+  padding: 30px 25px;
+  border: none;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-content-admin h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.modal-content-admin input,
+.modal-content-admin select {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s ease-in-out;
+}
+
+.modal-content-admin input:focus,
+.modal-content-admin select:focus {
+  border-color: #e65c00;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-buttons button {
+  background-color: #e65c00;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease-in-out;
+}
+
+.modal-buttons button:hover {
+  background-color: #cc5200;
+}
+
+.modal-content-admin .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #999;
+  cursor: pointer;
+}
+
+.modal-content-admin .close:hover {
+  color: #e65c00;
+}
