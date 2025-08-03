@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Obtener usuario por ID (¡corregido!)
+// Obtener usuario por ID 
 router.get('/:id', async (req, res) => {
   try {
     const usuario = await Usuario.findById(req.params.id);
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Actualizar usuario (ya estaba bien)
+// Actualizar usuario 
 router.put('/:id', async (req, res) => {
   try {
     const usuario = await Usuario.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -45,7 +45,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Eliminar usuario (¡corregido!)
+// Eliminar usuario
 router.delete('/:id', async (req, res) => {
   try {
     const usuario = await Usuario.findByIdAndDelete(req.params.id);

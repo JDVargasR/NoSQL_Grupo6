@@ -1,8 +1,52 @@
-document.addEventListener("DOMContentLoaded", () => {
+const usuarioId = localStorage.getItem("usuarioId");
+
+if (!usuarioId) {
+  Swal.fire({
+    title: "No has iniciado sesión",
+    icon: "warning",
+    confirmButtonText: "Ir al login",
+    scrollbarPadding: false,
+    heightAuto: false
+  }).then(() => window.location.href = "login.html");
+} else {
+  fetch(`http://localhost:3000/api/usuarios/${usuarioId}`)
+    .then(res => {
+      if (!res.ok) throw new Error("No se pudo obtener el usuario");
+      return res.json();
+    })
+    .then(usuario => {
+      if (!usuario || usuario.tipo !== "ADMIN" || usuario.estado !== "ACTIVO") {
+        Swal.fire({
+          title: "Acceso denegado",
+          text: "Esta sección es solo para administradores activos",
+          icon: "warning",
+          confirmButtonText: "Volver al inicio",
+          scrollbarPadding: false,
+          heightAuto: false
+        }).then(() => window.location.href = "agenda.html");
+      } else {
+        document.querySelector(".user-email").textContent = usuario.correo;
+        iniciarCrudUsuarios();
+      }
+    })
+    .catch(error => {
+      console.error("Error de validación:", error);
+      Swal.fire({
+        title: "Error",
+        text: "No se pudo validar el usuario",
+        icon: "error",
+        confirmButtonText: "Volver al login",
+        scrollbarPadding: false,
+        heightAuto: false
+      }).then(() => window.location.href = "login.html");
+    });
+}
+
+function iniciarCrudUsuarios() {
   const tablaUsuarios = document.getElementById("tablaUsuarios");
-  const modal = document.querySelector(".adminUsuarios-modalUsuarios");
+  const modal = document.querySelector(".modalUsuarios");
   const btnAgregar = document.getElementById("btnAgregarUsuario");
-  const btnCerrar = modal.querySelector(".adminUsuarios-cerrar");
+  const btnCerrar = modal.querySelector(".close");
   const btnGuardar = document.getElementById("btnGuardarUsuario");
 
   const idInput = document.getElementById("usuarioId");
@@ -58,9 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-    }
+    if (e.target === modal) modal.style.display = "none";
   });
 
   btnGuardar.addEventListener("click", async () => {
@@ -155,4 +197,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   cargarUsuarios();
-});
+}

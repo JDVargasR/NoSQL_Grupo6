@@ -16,6 +16,9 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (response.status === 200) {
+      // Guardamos solo el ID del usuario
+      localStorage.setItem("usuarioId", data.usuario._id);
+
       Swal.fire({
         icon: 'success',
         title: '¡Inicio de sesión exitoso!',
@@ -31,7 +34,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
       Swal.fire({
         icon: 'warning',
         title: 'Usuario inactivo',
-        text: data.mensaje || 'Usuario Inactivo, comuniquese con su Administrador',
+        text: data.mensaje || 'Usuario Inactivo, comuníquese con su administrador.',
         confirmButtonColor: '#f4b400',
         scrollbarPadding: false,
         heightAuto: false
