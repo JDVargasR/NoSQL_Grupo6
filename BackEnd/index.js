@@ -30,6 +30,14 @@ mongoose.connection.on('error', (err) => {
 const RouterUsuario = require('./routers/usuarioRoutes');
 app.use('/api/usuarios', RouterUsuario);
 
+// Estado
+const RouterEstado = require("./routers/estadoRoutes");
+app.use("/api/estado", RouterEstado);
+
+// Modelo
+const modeloRoutes = require("./routers/modeloRoutes");
+app.use("/api/modelos", modeloRoutes);
+
 // Reservas
 //const reservaRoutes = require('./routers/reservaRoutes');
 //app.use('/api/reservas', reservaRoutes);

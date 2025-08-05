@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manejo de Modelos</title>
+  <link rel="stylesheet" href="../css/agenda.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="agenda.html">Mi Agenda</a></li>
+      <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
+      <li><a href="crearReservas.html">Crear Reserva</a></li>
+      <li><a href="historialReservas.html">Historial</a></li>
+      <li><a href="reportes.html">Reportes</a></li>
+      <li><a href="misVehiculos.html">Mis Vehículos</a></li>
+      <li><a href="modelos.html" class="active">Modelos</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido -->
+  <main class="main-content">
+    <header class="navbar">
+      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" /></span>
+      <span class="user-email">admin@email.com</span>
+    </header>
+
+    <section class="adminUsuarios-container">
+      <h2 class="adminUsuarios-titulo">Manejo de Modelos - Administrador</h2>
+      <button id="btnAgregarModelo" class="adminUsuarios-btnAgregar">Agregar Modelo</button>
+
+      <table class="adminUsuarios-tabla">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Año</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tablaModelos"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modalUsuarios">
+    <div class="modal-content-admin">
+      <span class="close">&times;</span>
+      <h3 id="modalTitulo">Formulario de Modelo</h3>
+      <input type="hidden" id="modeloId">
+      <input type="text" id="marca" placeholder="Marca" required>
+      <input type="text" id="modelo" placeholder="Modelo" required>
+      <input type="number" id="anio" placeholder="Año" required>
+      <select id="estado">
+        <option value="ACTIVO">Activo</option>
+        <option value="INACTIVO">Inactivo</option>
+      </select>
+      <div class="modal-buttons">
+        <button id="btnGuardarModelo">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/modelo.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

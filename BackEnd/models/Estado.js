@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 
 const estadoSchema = new mongoose.Schema({

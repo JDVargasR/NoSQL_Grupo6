@@ -1,11 +1,10 @@
-
 const mongoose = require("mongoose");
 
 const modeloSchema = new mongoose.Schema({
-  id_modelo: { type: Number, required: true, unique: true },
+  marca: { type: String, required: true, maxlength: 50 },
   modelo: { type: String, required: true, maxlength: 50 },
   anio: { type: Number, required: true },
-  id_estado: { type: Number, required: true, ref: "Estado" }
+  estado: { type: String, enum: ["ACTIVO", "INACTIVO"], default: "ACTIVO" }
 });
 
 module.exports = mongoose.model("Modelo", modeloSchema);
