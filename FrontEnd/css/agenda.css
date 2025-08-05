@@ -422,6 +422,8 @@ body {
 .adminUsuarios-tabla {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
+
 }
 
 .adminUsuarios-tabla th,
@@ -553,3 +555,30 @@ body {
 .btn-eliminar:hover {
   background-color: #d32f2f;
 }
+
+
+.modalRecomendaciones {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  background: transparent; 
+}
+
+.modal-content-admin {
+  background-color: #fff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  width: 95%;
+  max-width: 800px; 
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: none; 
+}
+

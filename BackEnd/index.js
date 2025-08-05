@@ -38,6 +38,10 @@ app.use("/api/estado", RouterEstado);
 const modeloRoutes = require("./routers/modeloRoutes");
 app.use("/api/modelos", modeloRoutes);
 
+//Recomendaciones
+const RecomendacionRoutes = require('./routers/recomendacionesRoutes');
+app.use('/api/recomendaciones', RecomendacionRoutes);
+
 // Reservas
 //const reservaRoutes = require('./routers/reservaRoutes');
 //app.use('/api/reservas', reservaRoutes);
