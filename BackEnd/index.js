@@ -42,6 +42,10 @@ app.use("/api/modelos", modeloRoutes);
 const RecomendacionRoutes = require('./routers/recomendacionesRoutes');
 app.use('/api/recomendaciones', RecomendacionRoutes);
 
+// Opiniones
+const RouterOpiniones = require('./routers/opiniones');
+app.use('/api/opiniones', RouterOpiniones);
+
 // Reservas
 //const reservaRoutes = require('./routers/reservaRoutes');
 //app.use('/api/reservas', reservaRoutes);

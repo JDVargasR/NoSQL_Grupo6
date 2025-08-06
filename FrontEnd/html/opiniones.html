@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Opiniones</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-top: 40px;
+    }
+
+    .form-container {
+      max-width: 500px;
+      background-color: white;
+      padding: 30px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #ff5e00;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e55300;
+    }
+
+    .opiniones-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .opinion {
+      margin-bottom: 20px;
+    }
+
+    .opinion h3 {
+      margin: 0;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .opinion p {
+      margin: 4px 0;
+      color: #555;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Déjanos tu opinión</h1>
+
+  <div class="form-container">
+    <form id="formOpinion">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required>
+
+      <label for="comentario">Comentario:</label>
+      <textarea id="comentario" rows="3" required></textarea>
+
+      <label for="calificacion">Calificación (1-5):</label>
+      <input type="text" id="calificacion" required>
+
+      <button type="submit">Enviar Opinión</button>
+    </form>
+  </div>
+
+  <h2 style="text-align:center;">Opiniones de otros usuarios</h2>
+  <div id="listaOpiniones" class="opiniones-container"></div>
+
+  <script>
+    // Enviar nueva opinión
+    document.getElementById('formOpinion').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const comentario = document.getElementById('comentario').value;
+      const calificacion = parseInt(document.getElementById('calificacion').value);
+
+      if (calificacion < 1 || calificacion > 5) {
+        alert('La calificación debe ser un número entre 1 y 5.');
+        return;
+      }
+
+      const nuevaOpinion = {
+        usuario: nombre,
+        comentario: comentario,
+        calificacion: calificacion
+      };
+
+      try {
+        const res = await fetch('/api/opiniones', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(nuevaOpinion)
+        });
+
+        if (res.ok) {
+          document.getElementById('formOpinion').reset();
+          cargarOpiniones(); // recarga las opiniones
+        } else {
+          alert('Hubo un error al enviar tu opinión.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error de conexión con el servidor.');
+      }
+    });
+
+    // Cargar y mostrar opiniones existentes
+    async function cargarOpiniones() {
+      try {
+const res = await fetch('http://localhost:3000/api/opiniones');
+        const data = await res.json();
+
+        const contenedor = document.getElementById('listaOpiniones');
+        contenedor.innerHTML = '';
+
+        data.reverse().forEach(op => {
+          const div = document.createElement('div');
+          div.className = 'opinion';
+          div.innerHTML = `
+            <h3>${op.usuario}</h3>
+            <p>${op.comentario}</p>
+            <p>⭐ Calificación: ${'★'.repeat(op.calificacion)}</p>
+            <hr>
+          `;
+          contenedor.appendChild(div);
+        });
+      } catch (error) {
+        console.error('Error al cargar opiniones:', error);
+      }
+    }
+
+    // Cargar al abrir la página
+    document.addEventListener('DOMContentLoaded', cargarOpiniones);
+  </script>
+</body>
+</html>
