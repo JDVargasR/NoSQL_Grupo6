@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Opiniones</title>
   <link rel="stylesheet" href="../css/agenda.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
 </head>
 <body>
 
@@ -20,7 +21,7 @@
   <!-- Contenido principal -->
   <main class="main-content">
     <header class="navbar">
-      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" width="30"></span>
+      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" width="30" /></span>
       <div class="usuario-header-dropdown" id="usuarioDropdown">
         <span id="correoUsuario"></span>
         <div class="usuario-dropdown-menu" id="menuDropdown">
@@ -29,33 +30,16 @@
       </div>
     </header>
 
+    <!-- Contenedor de opiniones dinámico (cliente o admin) -->
     <section class="opinion-section-container">
-      <h2 class="opinion-titulo">Déjanos tu opinión</h2>
-
-      <form id="formOpinion" class="form-reserva">
-        <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" required />
-        </div>
-
-        <div class="form-group">
-          <label for="comentario">Comentario:</label>
-          <input id="comentario" rows="3" required />
-        </div>
-
-        <div class="form-group">
-          <label for="calificacion">Calificación (1-5):</label>
-          <input type="number" id="calificacion" min="1" max="5" required />
-        </div>
-
-        <button type="submit" class="btn-naranja">Enviar Opinión</button>
-      </form>
-
-      <h2 class="opinion-subtitulo">Opiniones de otros usuarios</h2>
-      <div id="listaOpiniones" class="opinion-listado-container"></div>
+      <!-- Esta sección será modificada dinámicamente por opiniones.js -->
+      <!-- Si es cliente, se inyectará el formulario + lista -->
+      <!-- Si es admin, se inyectará el CRUD completo -->
+      <noscript>Debes habilitar JavaScript para ver esta sección.</noscript>
     </section>
   </main>
 
+  <!-- Scripts -->
   <script src="../js/opiniones.js"></script>
   <script src="../js/infoUsuario.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
