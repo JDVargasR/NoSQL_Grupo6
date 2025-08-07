@@ -19,7 +19,6 @@
       <li><a href="menejoUsuarios.html">Manejo de Usuarios</a></li>
       <li><a href="manejoModelos.html">Manejo de Modelos</a></li>
       <li><a href="recomendaciones.html">Recomendaciones</a></li>
-
     </ul>
   </aside>
 
@@ -27,7 +26,14 @@
   <main class="main-content">
     <header class="navbar">
       <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" width="30"></span>
-      <span class="user-email">usuario@email.com</span>
+
+      <!-- CORREO Y DROPDOWN -->
+      <div class="usuario-header-dropdown" id="usuarioDropdown">
+        <span id="correoUsuario"></span>
+        <div class="usuario-dropdown-menu" id="menuDropdown">
+          <button onclick="cerrarSesion()">Cerrar sesión</button>
+        </div>
+      </div>
     </header>
 
     <section class="agenda-container">
@@ -42,7 +48,7 @@
             <th>Placa</th>
             <th>Fecha de reserva</th>
             <th>Pago</th>
-  
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -68,6 +74,7 @@
     </section>
   </main>
 
-  </body>
+  <!-- SCRIPT PARA MOSTRAR CORREO Y CERRAR SESIÓN -->
+   <script src="../js/infoUsuario.js"></script>
+</body>
 </html>
-
