@@ -1,13 +1,18 @@
 const usuarioId = localStorage.getItem("usuarioId");
 
-if (!usuarioId) {
+// Validacióndel ID
+if (!usuarioId || usuarioId.length !== 24) {
   Swal.fire({
-    title: "No has iniciado sesión",
+    title: "Sesión inválida",
+    text: "Tu sesión ha expirado o el ID de usuario es incorrecto.",
     icon: "warning",
-    confirmButtonText: "Ir al login",
+    confirmButtonText: "Volver al login",
     scrollbarPadding: false,
     heightAuto: false
-  }).then(() => window.location.href = "login.html");
+  }).then(() => {
+    localStorage.clear();
+    window.location.href = "login.html";
+  });
 } else {
   fetch(`http://localhost:3000/api/usuarios/${usuarioId}`)
     .then(res => {
@@ -25,12 +30,12 @@ if (!usuarioId) {
           heightAuto: false
         }).then(() => window.location.href = "agenda.html");
       } else {
-        document.querySelector(".user-email").textContent = usuario.correo;
+        document.getElementById("correoUsuario").textContent = usuario.correo;
         iniciarCrudUsuarios();
       }
     })
     .catch(error => {
-      console.error("Error de validación:", error);
+      console.error("Error al validar usuario:", error);
       Swal.fire({
         title: "Error",
         text: "No se pudo validar el usuario",
@@ -38,7 +43,10 @@ if (!usuarioId) {
         confirmButtonText: "Volver al login",
         scrollbarPadding: false,
         heightAuto: false
-      }).then(() => window.location.href = "login.html");
+      }).then(() => {
+        localStorage.clear();
+        window.location.href = "login.html";
+      });
     });
 }
 

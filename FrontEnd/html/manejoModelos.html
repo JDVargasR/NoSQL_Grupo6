@@ -25,8 +25,15 @@
   <!-- Contenido -->
   <main class="main-content">
     <header class="navbar">
-      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" /></span>
-      <span class="user-email">admin@email.com</span>
+      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" width="30"></span>
+
+      <!-- CORREO Y DROPDOWN -->
+      <div class="usuario-header-dropdown" id="usuarioDropdown">
+        <span id="correoUsuario"></span>
+        <div class="usuario-dropdown-menu" id="menuDropdown">
+          <button onclick="cerrarSesion()">Cerrar sesión</button>
+        </div>
+      </div>
     </header>
 
     <section class="adminUsuarios-container">
@@ -70,6 +77,7 @@
 
   <!-- Scripts -->
   <script src="../js/modelo.js"></script>
+  <script src="../js/infoUsuario.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
