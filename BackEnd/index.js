@@ -43,12 +43,16 @@ const RecomendacionRoutes = require('./routers/recomendacionesRoutes');
 app.use('/api/recomendaciones', RecomendacionRoutes);
 
 // Opiniones
-const RouterOpiniones = require('./routers/opiniones');
+const RouterOpiniones = require('./routers/opinionesRoutes');
 app.use('/api/opiniones', RouterOpiniones);
 
+// Espacios
+const EspacioRoutes = require("./routers/espacioRoutes");
+app.use("/api/espacios", EspacioRoutes);
+
 // Reservas
-//const reservaRoutes = require('./routers/reservaRoutes');
-//app.use('/api/reservas', reservaRoutes);
+const reservaRoutes = require('./routers/reservaRoutes');
+app.use('/api/reservas', reservaRoutes);
 
 // Frontend
 app.use(express.static(path.join(__dirname, '../FrontEnd')));

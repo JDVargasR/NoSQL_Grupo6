@@ -1,54 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <title>Crear Nueva Reserva</title>
-  <link rel="stylesheet" href="../css/agenda.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Crear Nueva Reserva</title>
+    <link rel="stylesheet" href="../css/agenda.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <ul>
+        <li><a href="agenda.html">Mi Agenda</a></li>
+        <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
+        <li><a href="crearReservas.html">Crear Reserva</a></li>
+        <li><a href="historialReservas.html">Historial</a></li>
+        <li><a href="reportes.html">Reportes</a></li>
+        <li><a href="misVehiculos.html">Mis Vehículos</a></li>
+        <li><a href="recomendaciones.html">Recomendaciones</a></li>
+      </ul>
+    </aside>
 
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <ul>
-      <li><a href="agenda.html">Mi Agenda</a></li>
-      <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
-      <li><a href="crearReservas.html">Crear Reserva</a></li>
-      <li><a href="historialReservas.html">Historial</a></li>
-      <li><a href="reportes.html">Reportes</a></li>
-      <li><a href="misVehiculos.html">Mis Vehículos</a></li>
-      <li><a href="recomendaciones.html">Recomendaciones</a></li>
-
-    </ul>
-  </aside>
-
-  <!-- Contenido principal -->
-  <main class="main-content">
-    <header class="navbar">
-      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" /></span>
-      <span class="user-email">usuario@email.com</span>
-    </header>
-
-    <section class="agenda-container">
-      <h2 class="titulo">Crear Nueva Reserva</h2>
-
-      <form class="form-reserva" id="formReserva">
-
-        <div class="form-group">
-          <label for="idUsuario">ID de Usuario</label>
-          <input type="number" id="idUsuario" name="idUsuario" placeholder="Ej: 1" min="1" required />
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <header class="navbar">
+        <span class="logo"><img src="../img/parqueoLogin.jpg"
+            alt="Logo" /></span>
+        <div class="usuario-header-dropdown" id="usuarioDropdown">
+          <span id="correoUsuario"></span>
+          <div class="usuario-dropdown-menu" id="menuDropdown">
+            <button onclick="cerrarSesion()">Cerrar sesión</button>
+          </div>
         </div>
+      </header>
 
-        <div class="form-group">
-          <label for="idEspacio">Número de Espacio</label>
-          <input type="number" id="idEspacio" name="idEspacio" placeholder="Ej: 3" min="1" required />
-        </div>
+      <section class="agenda-container">
+        <h2 class="titulo">Crear Nueva Reserva</h2>
 
-        <button type="submit" class="btn-guardar">Guardar Reserva</button>
-      </form>
-    </section>
-  </main>
+        <form class="form-reserva" id="formReserva">
+          <div class="form-group">
+            <label for="idUsuario">ID de Usuario</label>
+            <input type="text" id="idUsuario" name="idUsuario" readonly />
+          </div>
 
-  <script src="../js/reserva.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</body>
+          <div class="form-group">
+            <label for="idModelo">Vehículo</label>
+            <select id="idModelo" name="idModelo" required>
+              <option value>Seleccione un vehículo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="idEspacio">Espacio</label>
+            <select id="idEspacio" name="idEspacio" required>
+              <option value>Seleccione un espacio</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-guardar">Guardar Reserva</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="../js/reserva.js"></script>
+    <script src="../js/infoUsuario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
 </html>

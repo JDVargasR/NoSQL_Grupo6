@@ -1,12 +1,11 @@
-
 const mongoose = require("mongoose");
 
 const reservaSchema = new mongoose.Schema({
-  id_reserva: { type: Number, required: true, unique: true },
-  id_usuario: { type: Number, required: true, ref: "Usuario" },
-  id_espacio: { type: Number, required: true, ref: "Espacio" },
-  id_estado: { type: Number, required: true, ref: "Estado" },
-  monto_total: { type: Number, required: true }
+  id_usuario: { type: mongoose.Schema.Types.ObjectId, ref: "Usuario", required: true },
+  id_modelo: { type: mongoose.Schema.Types.ObjectId, ref: "Modelo", required: true },
+  id_espacio: { type: mongoose.Schema.Types.ObjectId, ref: "Espacio", required: true },
+  estado: { type: String, enum: ['ACTIVO', 'INACTIVO', 'COMPLETADA'], default: 'INACTIVO' },
+  fecha: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("Reservas", reservaSchema);
+module.exports = mongoose.model("Reserva", reservaSchema);
