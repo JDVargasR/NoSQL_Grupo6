@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Agenda de Reservas Activas</title>
-  <link rel="stylesheet" href="../css/agenda.css">
+  <link rel="stylesheet" href="../css/agenda.css" />
 </head>
 <body>
 
@@ -16,7 +16,7 @@
       <li><a href="historialReservas.html">Historial</a></li>
       <li><a href="reportes.html">Reportes</a></li>
       <li><a href="misVehiculos.html">Mis Vehículos</a></li>
-      <li><a href="manejoUsuarios.html">Manejo de Usuarios</a></li> <!-- corregí 'menejo' -->
+      <li><a href="manejoUsuarios.html">Manejo de Usuarios</a></li>
       <li><a href="manejoModelos.html">Manejo de Modelos</a></li>
       <li><a href="recomendaciones.html">Recomendaciones</a></li>
       <li><a href="opiniones.html">Opiniones</a></li>
@@ -26,7 +26,7 @@
   <!-- Contenido principal -->
   <main class="main-content">
     <header class="navbar">
-      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" width="30"></span>
+      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" width="30" /></span>
 
       <!-- CORREO Y DROPDOWN -->
       <div class="usuario-header-dropdown" id="usuarioDropdown">
@@ -51,14 +51,53 @@
             <th>Acción</th>
           </tr>
         </thead>
-        <tbody id="tablaAgenda"></tbody> <!-- <-- id que usa agenda.js -->
+        <tbody id="tablaAgenda"></tbody>
       </table>
     </section>
   </main>
 
+  <!-- Modal de Pago (Agenda) -->
+  <div class="agendaPago-overlay" id="agendaPagoOverlay">
+    <div class="agendaPago-modal" id="agendaPagoModal">
+      <div class="agendaPago-header">
+        <h3>Registrar Pago</h3>
+        <button type="button" id="agendaPagoCerrar" class="agendaPago-close">&times;</button>
+      </div>
+
+      <form id="agendaPagoForm" class="agendaPago-form">
+        <input type="hidden" id="agendaPagoReservaId" />
+
+        <div class="agendaPago-field">
+          <label for="agendaPagoMonto">Monto (₡)</label>
+          <input type="number" id="agendaPagoMonto" placeholder="Ingrese el monto" min="1" required />
+        </div>
+
+        <div class="agendaPago-field">
+          <label for="agendaPagoMetodo">Método de pago</label>
+          <select id="agendaPagoMetodo" required>
+            <option value="EFECTIVO">EFECTIVO</option>
+            <option value="SINPEMOVIL">SINPEMOVIL</option>
+            <option value="TARJETA">TARJETA</option>
+          </select>
+        </div>
+
+        <div class="agendaPago-field">
+          <label for="agendaPagoDescuento">ID Descuento (opcional)</label>
+          <input type="number" id="agendaPagoDescuento" min="0" placeholder="0" />
+        </div>
+
+        <div class="agendaPago-actions">
+          <button type="button" id="agendaPagoCancelar" class="agendaPago-btn agendaPago-btnOutline">Cancelar</button>
+          <button type="submit" class="agendaPago-btn agendaPago-btnPrimary">Pagar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../js/infoUsuario.js"></script>
+  <script src="../js/modalPago.js"></script>
   <script src="../js/agenda.js"></script>
 </body>
 </html>

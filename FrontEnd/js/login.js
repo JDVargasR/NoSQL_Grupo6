@@ -29,7 +29,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         scrollbarPadding: false,
         heightAuto: false
       }).then(() => {
-        window.location.href = "agenda.html";
+        window.location.href = "crearReservas.html";
       });
 
     } else if (response.status === 403) {

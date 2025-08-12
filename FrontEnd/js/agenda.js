@@ -1,7 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const tablaBody = document.getElementById("tablaAgenda");
+  const tablaBody =
+    document.getElementById("tablaAgenda") ||
+    document.getElementById("tablaReservasActivas") ||
+    document.querySelector("table tbody");
+
   const usuarioCorreo = document.getElementById("correoUsuario");
   const infoRegistros = document.getElementById("infoRegistros");
+
+  if (!tablaBody) {
+    Swal.fire({
+      title: "Error de estructura",
+      text: "No se encontró el cuerpo de la tabla (tbody) para la agenda.",
+      icon: "error",
+      confirmButtonText: "OK",
+      scrollbarPadding: false,
+      heightAuto: false
+    });
+    return;
+  }
 
   const usuarioId = localStorage.getItem("usuarioId");
   const isValidObjectId = (id) => typeof id === "string" && id.length === 24;
@@ -14,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       icon: "warning",
       confirmButtonText: "Ir al login",
       scrollbarPadding: false,
-      heightAuto: false,
+      heightAuto: false
     }).then(() => {
       localStorage.clear();
       window.location.href = "login.html";
@@ -22,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Validar que sea ADMIN
+  // Validar que sea ADMIN (y activo)
   fetch(`http://localhost:3000/api/usuarios/${usuarioId}`)
     .then((res) => {
       if (!res.ok) throw new Error("No se pudo obtener el usuario");
@@ -36,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
           icon: "warning",
           confirmButtonText: "Iniciar sesión como admin",
           scrollbarPadding: false,
-          heightAuto: false,
+          heightAuto: false
         }).then(() => {
           window.location.href = "login.html";
         });
@@ -58,16 +74,16 @@ document.addEventListener("DOMContentLoaded", () => {
         icon: "error",
         confirmButtonText: "Volver al login",
         scrollbarPadding: false,
-        heightAuto: false,
+        heightAuto: false
       }).then(() => {
         localStorage.clear();
         window.location.href = "login.html";
       });
     });
 
-  function cargarAgenda(usuarioId) {
+  function cargarAgenda(uid) {
     fetch("http://localhost:3000/api/reservas/activas", {
-      headers: { "x-usuario-id": usuarioId },
+      headers: { "x-usuario-id": uid }
     })
       .then((res) => {
         if (!res.ok) {
@@ -84,13 +100,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!reservas || reservas.length === 0) {
           const fila = document.createElement("tr");
           const celda = document.createElement("td");
-          celda.colSpan = 6;
+          celda.colSpan = 6; // #, Cliente, Vehículo, Espacio, Fecha, Acción
           celda.textContent = "No hay reservas activas";
           celda.style.textAlign = "center";
           fila.appendChild(celda);
           tablaBody.appendChild(fila);
-          if (infoRegistros)
-            infoRegistros.textContent = "Mostrando 0 registros";
+          if (infoRegistros) infoRegistros.textContent = "Mostrando 0 registros";
           return;
         }
 
@@ -99,13 +114,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // #
           const tdIdx = document.createElement("td");
-          tdIdx.textContent = `A-${idx + 1}`;
+          tdIdx.textContent = `R-${idx + 1}`;
 
           // Cliente
           const tdCliente = document.createElement("td");
           tdCliente.textContent =
-            (r.id_usuario && (r.id_usuario.nombre || r.id_usuario.correo)) ||
-            "Usuario";
+            (r.id_usuario && (r.id_usuario.nombre || r.id_usuario.correo)) || "Usuario";
 
           // Vehículo
           const tdVeh = document.createElement("td");
@@ -117,18 +131,16 @@ document.addEventListener("DOMContentLoaded", () => {
           // Espacio
           const tdEsp = document.createElement("td");
           tdEsp.textContent =
-            r.id_espacio?.numero_espacio != null
-              ? `#${r.id_espacio.numero_espacio}`
-              : "-";
+            r.id_espacio?.numero_espacio != null ? `#${r.id_espacio.numero_espacio}` : "-";
 
-          // Fecha (solo fecha, osea sin hora)
+          // Fecha (solo fecha)
           const tdFecha = document.createElement("td");
           const fechaValida = r.fecha ? new Date(r.fecha) : null;
           tdFecha.textContent = fechaValida
             ? fechaValida.toLocaleDateString("es-CR", {
                 year: "numeric",
                 month: "2-digit",
-                day: "2-digit",
+                day: "2-digit"
               })
             : "Fecha no disponible";
 
@@ -164,24 +176,33 @@ document.addEventListener("DOMContentLoaded", () => {
           showCancelButton: true,
           cancelButtonText: "Cancelar",
           scrollbarPadding: false,
-          heightAuto: false,
+          heightAuto: false
         }).then((r) => r.isConfirmed && cargarAgenda(usuarioId));
       });
   }
 
-  // Botón "Completar"
+  // Botón Completar
   document.getElementById("tablaAgenda").addEventListener("click", (e) => {
     const btn = e.target.closest(".btn-historial");
     if (!btn) return;
 
     const reservaId = btn.dataset.id;
-    Swal.fire({
-      title: "Completar reserva",
-      text: "Pronto habilitaremos esta acción.",
-      icon: "info",
-      confirmButtonText: "OK",
-      scrollbarPadding: false,
-      heightAuto: false,
-    });
+    if (typeof abrirModalPago === "function") {
+      // Puedes pasar un monto sugerido si lo tienes (p.ej. 3000)
+      abrirModalPago(reservaId /*, 3000 */);
+    } else {
+      Swal.fire({
+        title: "Modal no disponible",
+        text: "No se encontró el componente de pago.",
+        icon: "info",
+        confirmButtonText: "OK",
+        scrollbarPadding: false,
+        heightAuto: false
+      });
+    }
   });
+
+  // Refrescar agenda
+  document.addEventListener("reservaCompletada", () => cargarAgenda(usuarioId));
+  document.addEventListener("pagoExitoso", () => cargarAgenda(usuarioId));
 });

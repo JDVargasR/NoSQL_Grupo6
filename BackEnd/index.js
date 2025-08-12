@@ -54,6 +54,10 @@ app.use("/api/espacios", EspacioRoutes);
 const reservaRoutes = require('./routers/reservaRoutes');
 app.use('/api/reservas', reservaRoutes);
 
+//Pagos
+const pagoRoutes = require('./routers/pagoRoutes');
+app.use('/api/pagos', pagoRoutes);
+
 // Frontend
 app.use(express.static(path.join(__dirname, '../FrontEnd')));
 

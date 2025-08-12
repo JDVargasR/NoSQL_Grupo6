@@ -230,6 +230,7 @@ body {
 .btn-guardar:hover {
   background-color: #e65c00;
 }
+
 /* CARTAS PARA DISEÑO*/
 .card-reporte {
   background-color: white;
@@ -336,6 +337,7 @@ body {
   background-color: #e65c00;
 }
 
+/* Modales genéricos existentes (tuyos) */
 .modal {
   display: none;
   position: fixed;
@@ -423,7 +425,6 @@ body {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-
 }
 
 .adminUsuarios-tabla th,
@@ -556,7 +557,6 @@ body {
   background-color: #d32f2f;
 }
 
-
 .modalRecomendaciones {
   display: none;
   position: fixed;
@@ -631,7 +631,6 @@ body {
 }
 
 /* Opiniones - Estilos específicos */
-
 .opinion-section-container {
   padding: 30px;
   max-width: 700px;
@@ -677,4 +676,132 @@ body {
   font-size: 14px;
   color: #555;
   margin: 3px 0;
+}
+
+/* ===============================
+   NUEVO: Modal de Pago (Agenda)
+   =============================== */
+.agendaPago-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.55);
+  display: none;              /* se muestra con .agendaPago-open */
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;              /* por encima de otros modales */
+}
+
+/* cuando se abre el modal */
+.agendaPago-open {
+  display: flex;
+}
+
+.agendaPago-modal {
+  width: 95%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+  overflow: hidden;
+  animation: agendaPagoPop 0.18s ease-out;
+}
+
+@keyframes agendaPagoPop {
+  from { transform: scale(0.96); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.agendaPago-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #f7f7f9;
+  border-bottom: 1px solid #eee;
+}
+
+.agendaPago-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #111827;
+}
+
+.agendaPago-close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.agendaPago-form {
+  padding: 16px;
+}
+
+.agendaPago-field {
+  margin-bottom: 12px;
+}
+
+.agendaPago-field label {
+  display: block;
+  font-size: 13px;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.agendaPago-field input,
+.agendaPago-field select {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.agendaPago-field input:focus,
+.agendaPago-field select:focus {
+  border-color: #1f8fc3;
+  box-shadow: 0 0 0 3px rgba(31,143,195,0.15);
+}
+
+.agendaPago-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.agendaPago-btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.agendaPago-btnOutline {
+  background: #fff;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+}
+
+.agendaPago-btnOutline:hover {
+  background: #f9fafb;
+}
+
+.agendaPago-btnPrimary {
+  background: linear-gradient(180deg, #34c759, #28a745); /* verde consistente con .btn-historial */
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(40,167,69,0.25);
+}
+
+.agendaPago-btnPrimary:hover {
+  filter: brightness(1.03);
+  box-shadow: 0 4px 12px rgba(40,167,69,0.28);
+}
+
+.agendaPago-btnPrimary:active {
+  transform: translateY(1px);
 }

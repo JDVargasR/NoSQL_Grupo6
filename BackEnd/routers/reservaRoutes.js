@@ -105,6 +105,32 @@ router.get('/activas', requireAdmin, async (req, res) => {
   }
 });
 
+// COMPLETADA: solo ADMIN
+router.patch('/:id/completar', requireAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reserva = await Reserva.findById(id);
+
+    if (!reserva) {
+      return res.status(404).json({ error: 'Reserva no encontrada' });
+    }
+    if (reserva.estado !== 'ACTIVO') {
+      return res.status(400).json({ error: 'Solo se pueden completar reservas ACTIVAS' });
+    }
+
+    reserva.estado = 'COMPLETADA';
+    if (!reserva.fecha_completada) {
+      reserva.fecha_completada = new Date();
+    }
+
+    await reserva.save();
+    return res.json({ ok: true, mensaje: 'Reserva completada', reserva });
+  } catch (error) {
+    console.error("Error al completar reserva:", error);
+    res.status(500).json({ error: 'Error al completar la reserva' });
+  }
+});
+
 // Obtener una reserva por ID
 router.get("/:id", async (req, res) => {
   try {
