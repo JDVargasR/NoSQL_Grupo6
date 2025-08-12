@@ -61,6 +61,50 @@ router.get('/pendientes', requireAdmin, async (req, res) => {
   }
 });
 
+// Solo permite confirmar si está INACTIVO
+router.patch('/:id/confirmar', requireAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reserva = await Reserva.findById(id);
+
+    if (!reserva) {
+      return res.status(404).json({ error: 'Reserva no encontrada' });
+    }
+    if (reserva.estado !== 'INACTIVO') {
+      return res.status(400).json({ error: 'Solo se pueden confirmar reservas pendientes' });
+    }
+
+    reserva.estado = 'ACTIVO';
+    // Si quieres guardar cuándo se activó:
+    if (!reserva.fecha_activacion) {
+      reserva.fecha_activacion = new Date();
+    }
+
+    await reserva.save();
+
+    return res.json({ ok: true, mensaje: 'Reserva confirmada', reserva });
+  } catch (error) {
+    console.error("Error al confirmar reserva:", error);
+    res.status(500).json({ error: 'Error al confirmar la reserva' });
+  }
+});
+
+// ACTIVAS: solo ADMIN
+router.get('/activas', requireAdmin, async (req, res) => {
+  try {
+    const reservas = await Reserva.find({ estado: 'ACTIVO' })
+      .populate('id_usuario', 'nombre correo')
+      .populate('id_modelo', 'marca modelo anio')
+      .populate('id_espacio', 'numero_espacio estado')
+      .sort({ fecha: -1 });
+
+    res.json(reservas);
+  } catch (error) {
+    console.error("Error al obtener reservas activas:", error);
+    res.status(500).json({ error: 'Error al obtener las reservas activas' });
+  }
+});
+
 // Obtener una reserva por ID
 router.get("/:id", async (req, res) => {
   try {

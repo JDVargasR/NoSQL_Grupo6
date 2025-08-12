@@ -2,10 +2,9 @@
 const mongoose = require("mongoose");
 
 const pagoSchema = new mongoose.Schema({
-  id_pago: { type: Number, required: true, unique: true },
   monto_pago: { type: Number, required: true },
-  id_metodo_pago: { type: Number, required: true, ref: "MetodoPago" },
-  id_estado: { type: Number, required: true, ref: "Estado" },
+  tipo_pago: { type: String, enum: ['EFECTIVO', 'SINPEMOVIL', 'TARJETA'], default: 'EFECTIVO' },
+  estado: { type: String, enum: ['COMPLETADO', 'PENDIENTE', 'CON ERROR'], default: 'COMPLETADO' },
   id_descuento: { type: Number, required: true }
 });
 
