@@ -129,7 +129,7 @@
         hide();
         await Swal.fire({
           title: 'Reserva completada',
-          text: 'El pago fue registrado y la reserva quedó COMPLETADA.',
+          text: 'El pago fue registrado de manera correcta',
           icon: 'success',
           confirmButtonText: 'OK',
           scrollbarPadding: false,

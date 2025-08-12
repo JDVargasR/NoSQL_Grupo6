@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Historial de Reservas</title>
-  <link rel="stylesheet" href="../css/agenda.css">
+  <link rel="stylesheet" href="../css/agenda.css" />
 </head>
 <body>
 
@@ -15,61 +15,50 @@
       <li><a href="crearReservas.html">Crear Reserva</a></li>
       <li><a href="historialReservas.html">Historial</a></li>
       <li><a href="reportes.html">Reportes</a></li>
-      <li><a href="catalogoTiposVehiculo.html">Catálogo</a></li>
       <li><a href="misVehiculos.html">Mis Vehículos</a></li>
+      <li><a href="manejoUsuarios.html">Manejo de Usuarios</a></li>
+      <li><a href="manejoModelos.html">Manejo de Modelos</a></li>
       <li><a href="recomendaciones.html">Recomendaciones</a></li>
-
+      <li><a href="opiniones.html">Opiniones</a></li>
     </ul>
   </aside>
 
   <!-- Contenido principal -->
   <main class="main-content">
     <header class="navbar">
-      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" /></span>
-      <span class="user-email">usuario@email.com</span>
+      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" width="30" /></span>
+
+      <!-- CORREO Y DROPDOWN -->
+      <div class="usuario-header-dropdown" id="usuarioDropdown">
+        <span id="correoUsuario"></span>
+        <div class="usuario-dropdown-menu" id="menuDropdown">
+          <button onclick="cerrarSesion()">Cerrar sesión</button>
+        </div>
+      </div>
     </header>
 
     <section class="agenda-container">
-      <h2 class="titulo">Historial de Reservas</h2>
+      <h2 class="titulo">Historial de Reservas (Completadas)</h2>
 
       <table class="tabla-reservas">
         <thead>
           <tr>
-            <th># Reserva</th>
+            <th>#</th>
             <th>Cliente</th>
             <th>Vehículo</th>
-            <th>Fecha Entrega</th>
-            <th>Fecha Recogida</th>
-            <th>Estado</th>
-            <th>Monto</th>
-            <th>Acciones</th>
+            <th>Espacio</th>
+            <th>Fecha</th> <!-- mostramos solo fecha (de completada si existe) -->
+            <th>Acción</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>R-001</td>
-            <td>María López</td>
-            <td>XYZ-123</td>
-            <td>2025-05-10</td>
-            <td>2025-05-12</td>
-            <td><span class="badge badge-success">Completada</span></td>
-            <td>₡47.000</td>
-            <td><button class="btn-outline">Ver</button></td>
-          </tr>
-          <tr>
-            <td>R-002</td>
-            <td>Carlos Ruiz</td>
-            <td>ABC-456</td>
-            <td>2025-06-01</td>
-            <td>2025-06-02</td>
-            <td><span class="badge badge-success">Completada</span></td>
-            <td>₡53.000</td>
-            <td><button class="btn-outline">Ver</button></td>
-          </tr>
-        </tbody>
+        <tbody id="tablaHistorial"></tbody>
       </table>
     </section>
   </main>
 
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/infoUsuario.js"></script>
+  <script src="../js/historial.js"></script>
 </body>
 </html>
