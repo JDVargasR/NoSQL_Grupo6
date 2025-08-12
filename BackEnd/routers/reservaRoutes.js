@@ -1,6 +1,29 @@
 const express = require("express");
 const router = express.Router();
 const Reserva = require("../models/Reservas");
+const Usuario  = require('../models/Usuario');
+
+const requireAdmin = async (req, res, next) => {
+  try {
+    const userId = req.header('x-usuario-id');
+    if (!userId) return res.status(401).json({ error: 'No autenticado' });
+
+    const user = await Usuario.findById(userId).lean();
+    if (!user) return res.status(401).json({ error: 'Usuario no encontrado' });
+    if (user.estado !== 'ACTIVO') {
+      return res.status(403).json({ error: 'Usuario inactivo' });
+    }
+    if (user.tipo !== 'ADMIN') {
+      return res.status(403).json({ error: 'Acceso restringido a ADMIN' });
+    }
+
+    req.user = user;
+    next();
+  } catch (err) {
+    console.error('Auth error:', err);
+    res.status(500).json({ error: 'Error de autorización' });
+  }
+};
 
 // Crear reserva
 router.post("/", async (req, res) => {
@@ -23,15 +46,13 @@ router.post("/", async (req, res) => {
 });
 
 // Obtener reservas pendientes (estado INACTIVO)
-router.get('/pendientes', async (req, res) => {
+router.get('/pendientes', requireAdmin, async (req, res) => {
   try {
     const reservas = await Reserva.find({ estado: 'INACTIVO' })
       .populate('id_usuario', 'nombre correo')
       .populate('id_modelo', 'marca modelo anio')
-      .populate('id_espacio', 'numero tipo')
+      .populate('id_espacio', 'numero_espacio estado')
       .sort({ fecha: -1 });
-
-    console.log("✔️ Reservas pendientes encontradas:", reservas); // <-- PONÉ ESTO PARA VER EN TERMINAL
 
     res.json(reservas);
   } catch (error) {

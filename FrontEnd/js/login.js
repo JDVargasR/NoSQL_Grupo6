@@ -18,6 +18,8 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     if (response.status === 200) {
       // Guardamos solo el ID del usuario
       localStorage.setItem("usuarioId", data.usuario._id);
+      localStorage.setItem("correo_usuario", data.usuario.correo);
+      localStorage.setItem("usuarioTipo", data.usuario.tipo);
 
       Swal.fire({
         icon: 'success',
