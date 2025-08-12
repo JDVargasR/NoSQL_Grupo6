@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (res.ok) {
         Swal.fire("Reserva creada", "La reserva fue registrada exitosamente", "success")
-          .then(() => window.location.href = "agenda.html");
+          .then(() => window.location.href = "crearReservas.html");
       } else {
         Swal.fire("Error", data.error || "No se pudo crear la reserva", "error");
       }
