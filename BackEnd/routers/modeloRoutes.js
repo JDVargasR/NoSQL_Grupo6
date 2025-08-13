@@ -23,6 +23,19 @@ router.get("/", async (req, res) => {
   }
 });
 
+// LISTAR SOLO ACTIVOS
+router.get('/activos', async (req, res) => {
+  try {
+    const modelos = await Modelo.find({ estado: 'ACTIVO' })
+      .select('marca modelo anio placa estado') 
+      .sort({ marca: 1, modelo: 1, anio: -1 });
+    res.json(modelos);
+  } catch (e) {
+    console.error('Error al listar modelos activos:', e);
+    res.status(500).json({ error: 'Error al obtener modelos activos' });
+  }
+});
+
 // Obtener un modelo por ID
 router.get("/:id", async (req, res) => {
   try {

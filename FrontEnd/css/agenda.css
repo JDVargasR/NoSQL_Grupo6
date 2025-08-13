@@ -678,20 +678,16 @@ body {
   margin: 3px 0;
 }
 
-/* ===============================
-   NUEVO: Modal de Pago (Agenda)
-   =============================== */
 .agendaPago-overlay {
   position: fixed;
   inset: 0;
   background: rgba(17, 24, 39, 0.55);
-  display: none;              /* se muestra con .agendaPago-open */
+  display: none;              
   align-items: center;
   justify-content: center;
-  z-index: 1100;              /* por encima de otros modales */
+  z-index: 1100;             
 }
 
-/* cuando se abre el modal */
 .agendaPago-open {
   display: flex;
 }
@@ -792,7 +788,7 @@ body {
 }
 
 .agendaPago-btnPrimary {
-  background: linear-gradient(180deg, #34c759, #28a745); /* verde consistente con .btn-historial */
+  background: linear-gradient(180deg, #34c759, #28a745);
   color: #fff;
   box-shadow: 0 2px 6px rgba(40,167,69,0.25);
 }
@@ -804,4 +800,91 @@ body {
 
 .agendaPago-btnPrimary:active {
   transform: translateY(1px);
+}
+
+.crearReserva-page .titulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-reserva--card {
+  max-width: 760px;
+  margin: 0 auto;
+  border-radius: 16px;
+  padding: 24px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 16px 18px;
+}
+
+@media (max-width: 720px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group label {
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: block;
+  color: #1f2937;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  font-size: 14px;
+  background-color: #fff;
+  outline: none;
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #ff6600;
+  box-shadow: 0 0 0 3px rgba(255,102,0,0.15);
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.btn-ghost {
+  background: #fff;
+  color: #ff6600;
+  border: 1px solid #ff6600;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  background: rgba(255,102,0,0.06);
+}
+
+.btn-guardar {
+  border-radius: 10px;
+  padding: 10px 18px;
+  box-shadow: 0 6px 16px rgba(255, 102, 0, 0.25);
+}
+
+.btn-guardar:hover {
+  transform: translateY(-1px);
+}
+
+select:invalid {
+  color: #9ca3af;
 }
