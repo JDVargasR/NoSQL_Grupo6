@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Opiniones</title>
-  <link rel="stylesheet" href="../css/agenda.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opiniones</title>
+    <link rel="stylesheet" href="../css/agenda.css" />
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+  </head>
+  <body>
 
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <ul>
-      <li><a href="agenda.html">Mi Agenda</a></li>
-      <li><a href="opiniones.html">Opiniones</a></li>
-      <li><a href="recomendaciones.html">Recomendaciones</a></li>
-    </ul>
-  </aside>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <ul>
+        <li><a href="agenda.html">Mi Agenda</a></li>
+        <li><a href="reservasPendientes.html">Reservas Pendientes</a></li>
+        <li><a href="crearReservas.html">Crear Reserva</a></li>
+        <li><a href="historialReservas.html">Historial</a></li>
+        <li><a href="manejoUsuarios.html">Manejo de Usuarios</a></li>
+        <li><a href="manejoModelos.html">Manejo de Modelos</a></li>
+        <li><a href="recomendaciones.html">Recomendaciones</a></li>
+        <li><a href="opiniones.html">Opiniones</a></li>
+      </ul>
+    </aside>
 
-  <!-- Contenido principal -->
-  <main class="main-content">
-    <header class="navbar">
-      <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo" width="30" /></span>
-      <div class="usuario-header-dropdown" id="usuarioDropdown">
-        <span id="correoUsuario"></span>
-        <div class="usuario-dropdown-menu" id="menuDropdown">
-          <button onclick="cerrarSesion()">Cerrar sesión</button>
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <header class="navbar">
+        <span class="logo"><img src="../img/parqueoLogin.jpg" alt="Logo"
+            width="30" /></span>
+        <div class="usuario-header-dropdown" id="usuarioDropdown">
+          <span id="correoUsuario"></span>
+          <div class="usuario-dropdown-menu" id="menuDropdown">
+            <button onclick="cerrarSesion()">Cerrar sesión</button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <!-- Contenedor de opiniones dinámico (cliente o admin) -->
-    <section class="opinion-section-container">
-      <!-- Esta sección será modificada dinámicamente por opiniones.js -->
-      <!-- Si es cliente, se inyectará el formulario + lista -->
-      <!-- Si es admin, se inyectará el CRUD completo -->
-      <noscript>Debes habilitar JavaScript para ver esta sección.</noscript>
-    </section>
-  </main>
+      <!-- Contenedor de opiniones dinámico (cliente o admin) -->
+      <section class="opinion-section-container">
+        <!-- Esta sección será modificada dinámicamente por opiniones.js -->
+        <!-- Si es cliente, se inyectará el formulario + lista -->
+        <!-- Si es admin, se inyectará el CRUD completo -->
+        <noscript>Debes habilitar JavaScript para ver esta sección.</noscript>
+      </section>
+    </main>
 
-  <!-- Scripts -->
-  <script src="../js/opiniones.js"></script>
-  <script src="../js/infoUsuario.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</body>
+    <!-- Scripts -->
+    <script src="../js/opiniones.js"></script>
+    <script src="../js/infoUsuario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
 </html>

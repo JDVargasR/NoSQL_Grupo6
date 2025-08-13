@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manejo de Modelos</title>
+    <title>Manejo de Usuarios</title>
     <link rel="stylesheet" href="../css/agenda.css" />
     <link rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
   </head>
   <body>
-
     <!-- Sidebar -->
     <aside class="sidebar">
       <ul>
@@ -40,22 +39,22 @@
       </header>
 
       <section class="adminUsuarios-container">
-        <h2 class="adminUsuarios-titulo">Manejo de Modelos - Administrador</h2>
-        <button id="btnAgregarModelo" class="adminUsuarios-btnAgregar">Agregar
-          Modelo</button>
+        <h2 class="adminUsuarios-titulo">Manejo de Usuarios - Administrador</h2>
+        <button id="btnAgregarUsuario" class="adminUsuarios-btnAgregar">Agregar
+          Usuario</button>
 
         <table class="adminUsuarios-tabla">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Marca</th>
-              <th>Modelo</th>
-              <th>Año</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Tipo</th>
               <th>Estado</th>
               <th>Acciones</th>
             </tr>
           </thead>
-          <tbody id="tablaModelos"></tbody>
+          <tbody id="tablaUsuarios"></tbody>
         </table>
       </section>
     </main>
@@ -64,23 +63,27 @@
     <div class="modalUsuarios">
       <div class="modal-content-admin">
         <span class="close">&times;</span>
-        <h3 id="modalTitulo">Formulario de Modelo</h3>
-        <input type="hidden" id="modeloId">
-        <input type="text" id="marca" placeholder="Marca" required>
-        <input type="text" id="modelo" placeholder="Modelo" required>
-        <input type="number" id="anio" placeholder="Año" required>
-        <select id="estado">
+        <h3 id="modalTitulo">Formulario de Usuario</h3>
+        <input type="hidden" id="usuarioId">
+        <input type="text" id="nombreUsuario" placeholder="Nombre" required>
+        <input type="email" id="correoUsuario" placeholder="Correo" required>
+        <input type="password" id="contrasenaUsuario" placeholder="Contraseña"
+          required>
+        <select id="tipoUsuario">
+          <option value="CLIENTE">Cliente</option>
+          <option value="ADMIN">Administrador</option>
+        </select>
+        <select id="estadoUsuario">
           <option value="ACTIVO">Activo</option>
           <option value="INACTIVO">Inactivo</option>
         </select>
         <div class="modal-buttons">
-          <button id="btnGuardarModelo">Guardar</button>
+          <button id="btnGuardarUsuario">Guardar</button>
         </div>
       </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="../js/modelo.js"></script>
+    <script src="../js/usuarios.js"></script>
     <script src="../js/infoUsuario.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
